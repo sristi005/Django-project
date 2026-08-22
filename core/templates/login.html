@@ -373,11 +373,9 @@ Clicking “I Agree” confirms that you have read and accepted these terms.</sp
         
         // Clear all form fields
         form.reset();
-    } 
 
     function togglePassword() {
   const passwordField = document.getElementById("password");
-
   if (passwordField.type === "password") {
     passwordField.type = "text";
   } else {
@@ -385,7 +383,6 @@ Clicking “I Agree” confirms that you have read and accepted these terms.</sp
   }
 }
 
-// When the user clicks on div, open the popup
 function myFunction() {
   var popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
@@ -394,19 +391,14 @@ function myFunction() {
 // document.getElementById("loginForm").addEventListener("submit", function(e) {
 //     e.preventDefault(); // prevent page reload
 
-    const formData = new FormData(this);
+    {% comment %} const formData = new FormData(this);
 
     fetch("register.php", {
         method: "POST",
         body: formData
     })
     .then(res => res.text())
-    .then(data => alert(data));
-});
-
-
-
-
+    .then(data => alert(data)); {% endcomment %}
 
 
 
