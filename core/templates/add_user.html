@@ -1,0 +1,99 @@
+{% extends "adminpanel.html" %}
+
+{% block content %}
+
+<div class="col-lg-8 mx-auto my-5">
+    <div class="card">
+
+        <div class="card-header bg-danger">
+            <h5 class="text-white text-center">
+                Add Users
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- first Name -->
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        placeholder=""
+                        required
+                    >
+                    <label>first_name</label>
+                </div>
+
+
+
+                <!-- last name -->
+                <div class="form-floating mb-3">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="last_name"
+                        placeholder=""
+                        required
+                    >
+                    <label>last_name</label>
+
+                </div>
+
+
+                <!-- email -->
+                <div class="form-floating mb-3">
+
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        required
+                    >
+
+                    <label>email</label>
+
+                </div>
+
+                <!--Password-->
+                <div class="form-floating mb-3">
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        required
+                    >
+
+                    <label>password</label>
+
+                </div>
+
+
+               
+
+
+                <div class="d-grid gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        Add Item
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,270 @@
+
+    
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+<style>
+h1 {color:black}
+p {color:black;}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 1000;
+  }
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .carousel {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+    </style>
+</head>
+
+
+<BODY>
+    <center>
+
+    <div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/firstpic.avif' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/secondpic.webp' %}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/thirdpic.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+    
+    {% comment %} <img src="{% static 'images/q.jpeg' %}"  width="800" 
+     height="400" > {% endcomment %}
+
+     
+     <h1>Welcome to Coffee Hut – Where Every Sip Feels Like Home</h1>
+     <p>
+At Coffee Hut, we believe coffee is more than just a drink – 
+it’s an experience, a ritual, and a moment of connection. 
+Whether you're a lover of bold espresso, smooth lattes, or 
+handcrafted cold brews, we serve every cup with passion and precision. 
+Step into our warm, cozy space or explore our online menu to discover 
+premium blends, locally sourced beans, and sweet treats that complement 
+every mood. Brewed with love, served with a smile – that’s the Coffee Hut
+ promise.</p>
+
+
+ <div style="margin-top:40px;"></div>
+
+<hr style="width:80%;">
+ <h1 style="font-size:40px; text-align:center"> Available Coffees </h1>
+
+<div style="margin-top:60px;">
+<center>
+<img src="{% static 'images/latte.jpg' %}">
+<img src="{% static 'images/americano.jpg' %}">
+<img src="{% static 'images/cappuccino.jpg' %}">
+<img src="{% static 'images/frappe.jpg' %}">
+<img src="{% static 'images/macchiato.jpg' %}">
+
+</center></div>
+
+<p style="font-size:20px"> At Coffee Hut, we serve a delightful range of coffee to match every mood and taste. 
+    Enjoy the rich intensity of a classic Espresso, or the smooth, milky comfort of a Latte. 
+    Craving a balance of foam and bold flavor? Our Cappuccino is a customer favorite. 
+    For something lighter, try our Americano, made by blending espresso with hot water for a
+     smooth finish. If you're in the mood for something cool and refreshing, our Frappe is the 
+     perfect icy blend of coffee and cream. Whatever your coffee style, Coffee Hut has the
+      perfect cup waiting for you!</p>
+
+      <div style="margin-top:40px;"></div>
+
+<hr style="width:80%;">
+ <h1 style="font-size:40px; text-align:center"> Delicious Snacks With Coffee </h1>
+
+ <div style="margin-top:60px;"></div>
+ 
+ 
+
+     
+      <TABLE BORDER="1">
+<P ALIGN=CENTER>
+
+<TR ALIGN=CENTER>
+<TD> <img src="{% static 'images/sandwich.jpg' %}"></TD>
+<TD>
+    <ul ALIGN="center"> Cheese Sandwich</ul>
+    <ul>Veggie Sandwich</ul>
+    <ul>Chicken Sandwich</ul>
+</TD>
+<TD> 
+    <ul> Paneer Tikka Wraps</ul>
+    <ul>Chicken Mayo Wrap</ul>
+</TD>
+<TD> <img src="{% static 'images/wraps.jpg' %}"> </TD>
+</TR>
+<TR ALIGN=CENTER>
+<TD><img src="{% static 'images/fries.jpg' %}"></TD>
+<TD> <ul> French Fries</ul>
+    <ul>Potato Fries</ul>
+ </TD>
+<TD> <ul> Veg Puffs</ul>
+    <ul>Chicken Puffs</ul>
+</TD>
+<TD> <img src="{% static 'images/puff.jpg' %}"> </TD>
+</TR>
+<TR ALIGN=CENTER>
+<TD> <img src="{% static 'images/brownie.jpg' %}"> </TD>
+<TD> <ul> Brownies</ul>
+    <ul>Muffins</ul>
+    <ul>Cookies</ul>
+</TD>
+<TD> <ul> Garlic Bread</ul>
+    <ul>Cheese Toast </ul>
+</TD>
+<TD> <img src="{% static 'images/toast.jpg' %}"> </TD>
+</TR>
+</TABLE><br>
+
+<p style="font-size:20px">At Coffee Hut, it's not just about great coffee — we’ve got delicious snacks
+     to make your experience even better! From crispy sandwiches and cheesy wraps 
+     to freshly baked pastries, cookies, and muffins, our snack menu is the perfect
+      companion to your favorite brew. Whether you're here for a quick bite, a relaxing
+       break, or a cozy chat with friends, our café offers the ideal blend of flavors
+        to satisfy your cravings. Come for the coffee, stay for the snacks!</p>
+ 
+<hr style="width:80%;">
+ <h1 style="font-size:40px; text-align:center"> Be A Member Of Our cafe </h1>
+
+ <div style="margin-top:60px;"></div>
+
+ <p style="font-size:20px">Join our cozy community and enjoy exclusive perks, special offers,
+     and early access to events. At our cafe, you're more than a customer – you're part of the family.
+      Join us today and let every cup come with a little extra love.
+
+</p>
+   
+    </center>
+
+    </BODY>
+</HTML>
+<div class="col-lg-8 mx-auto my-5">
+    <div class="card">
+        <div class="card-header bg-success">
+            <h5 class="text-white text-center">Join Us</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        id="formId1"
+                        placeholder=""
+                    />
+                    <label for="formId1">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="cust_email"
+                        id="formId1"
+                        placeholder=""
+                    />
+                    <label for="formId1">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="cust_phone"
+                        id="formId1"
+                        placeholder=""
+                    />
+                    <label for="formId1">Phone</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Address</label>
+                        <textarea class="form-control" name="cust_address" id="" rows="3"></textarea>
+                    </div>
+                    
+                </div>
+
+
+                <div class="d-grid gap-2">
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        Submit Data
+                    </button>
+                </div>
+                
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+  
+<center>
+<video width="800" 
+     height="400" controls>
+<source src="{% static 'images/video.mp4' %}" type='video/mp4'>
+Your browser does not support the video tag.
+</video>
+</center>
+
+{% endblock content %}

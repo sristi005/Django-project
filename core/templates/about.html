@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<!doctype html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel>  
+
+        <style>
+
+            p {
+                margin-left: 5em; 
+                margin-right: 5em;
+            }
+ 
+
+            .centered {
+                color: white;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+                font-size:100px;
+                position: absolute;
+                top: 25%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                margin-left: 5em; 
+                margin-right: 5em;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+  /* Create two equal columns that floats next to each other */
+            .column1 {
+                float: left;
+                width: 40%;
+                padding: 10px;
+                height: 300px; /* Should be removed. Only for demonstration */
+            }
+
+            .column2 {
+                float: left;
+                width: 60%;
+                padding: 10px;
+                height: 300px; /* Should be removed. Only for demonstration */
+            }
+  
+
+  /* Clear floats after the columns */
+            .row:after {
+                ontent: "";
+                display: table;
+                clear: both;
+            }
+  
+        </style>
+    </head>
+
+    <body>
+
+        <center>
+
+        <h1> About Cafe Hut ☕</h1><br>
+        
+    <div class="row">
+            <div class="column1" style="background-color:white;">
+                <img src="{% static 'images/badge.webp' %}"  width="500" 
+                height="800" >
+            </div>
+            <div class="column2" style="background-color:white;">
+                 <p style="font-size: 20px;">
+            At Cafe Hut, we believe in the power of simplicity and connection—just like a great conversation. 
+            Our cozy corner is designed to be your go-to place for refreshment, creativity, and community.<br>
+            <b>Free to enjoy. Easy to return to</b><br>
+            Our doors are open to everyone—grab a coffee, settle in, and dive into your thoughts. 
+            Whether you're working on a project, meeting friends, or just taking a moment for yourself, 
+            Cafe Hut welcomes you like a long-time companion.<br>
+            <b>Fuel for your ideas. Inspiration for your day</b><br>
+            Need a spark of creativity? Want ideas for a fun project or a fresh perspective on a problem? 
+            From studying and brainstorming to planning your next adventure, our space (and our drinks!) are 
+            here to help you think big and feel at ease.<br>
+            <b>Friendly. Welcoming. Thoughtful</b><br>
+            Our team is here to support you—whether you need a new blend recommendation, a detailed 
+            pour-over explanation, or just a friendly smile. We value thoughtful conversations and aim to make your 
+            visit feel less like a transaction and more like a thoughtful interaction—almost like talking with a good friend.<br>
+            <b>Your comfort matters</b><br>
+            Sink into comfortable chairs, enjoy our free Wi-Fi, and stay powered up with cozy ambiance and open tables.
+            We’re designed for staying awhile—no rush, no fuss.<br>
+            <b>Join the Hut family</b><br>
+            Stop by to enjoy handcrafted coffees, teas, and snacks made with care. Bring your next idea, your study notes,
+            or just yourself—we can’t wait to see what you bring to our table.
+                </p>
+            </div>
+    </div>
+    </center>
+
+    <!<div class="container">
+        <!img src="{% static 'images/about.webp' %}"  width="1300" height="300"  align="bottom"></div> >           
+ 
+
+
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
+
+{% endblock content %}
+
+

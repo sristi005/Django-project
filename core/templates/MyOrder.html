@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+
+
+<style>
+  h3 { color: white; }
+  p1 { color: white; }
+
+  .order-card {
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: white;
+  }
+
+  .order-header {
+    background-color: #381501;
+    color: white;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    padding: .75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .status-badge {
+    padding: .3rem .7rem;
+    border-radius: 1rem;
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .status-pending    { background-color: #fff3cd; color: #856404; }
+  .status-paid        { background-color: #cff4fc; color: #055160; }
+  .status-preparing   { background-color: #ffe5b4; color: #7a4a00; }
+  .status-completed   { background-color: #d1e7dd; color: #0f5132; }
+  .status-cancelled   { background-color: #f8d7da; color: #842029; }
+
+  .order-item-row {
+    display: flex;
+    justify-content: space-between;
+    padding: .4rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .order-item-row:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<div class="container my-4">
+  <h1 class="text-center mb-4">MY ORDERS</h1>
+  <hr>
+
+  {% if orders %}
+    {% for order in orders %}
+    <div class="order-card mb-4">
+      <div class="order-header">
+        <div>
+          <strong>Order #{{ order.id }}</strong>
+          <span class="ms-3">{{ order.order_created_at|date:"M d, Y - h:i A" }}</span>
+        </div>
+        <span class="status-badge status-{{ order.status }}">{{ order.get_status_display }}</span>
+      </div>
+
+      <div class="p-3">
+        {% for item in order.items.all %}
+        <div class="order-item-row">
+          <span>{{ item.item_name }} <span class="text-muted">x{{ item.quantity }}</span></span>
+          <span>${{ item.subtotal }}</span>
+        </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-between mt-3 pt-2 border-top">
+          <strong>Total</strong>
+          <strong>${{ order.total_amount }}</strong>
+        </div>
+
+        {% if order.address %}
+        <div class="text-muted small mt-2">Delivered to: {{ order.address }}</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="text-center text-muted py-5">
+      <p>You haven't placed any orders yet.</p>
+      <a href='{% url "coffee_page" %}' class="btn btn-coffee">Browse Menu</a>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends "adminpanel.html" %}
+
+{% block content %}
+
+<div class="col-lg-8 mx-auto my-5">
+
+    <div class="card">
+
+        <div class="card-header bg-danger">
+            <h5 class="text-white text-center">
+                Add Category
+            </h5>
+        </div>
+
+
+        <div class="card-body">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+
+                <!-- Category Name -->
+                <div class="form-floating mb-3">
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        id="name"
+                        placeholder=""
+                        required
+                    >
+
+                    <label for="category_name">
+                        Category Name
+                    </label>
+
+                </div>
+
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        Add Category
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

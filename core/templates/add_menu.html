@@ -1,0 +1,131 @@
+{% extends "adminpanel.html" %}
+
+{% block content %}
+
+<div class="col-lg-8 mx-auto my-5">
+    <div class="card">
+
+        <div class="card-header bg-danger">
+            <h5 class="text-white text-center">
+                Add Menu Item
+            </h5>
+        </div>
+
+        <div class="card-body">
+
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- Item Name -->
+                <div class="form-floating mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="item_name"
+                        placeholder=""
+                        required
+                    >
+                    <label>Item Name</label>
+                </div>
+
+
+                <!-- Category Dropdown -->
+                <div class="form-floating mb-3">
+
+                    <select 
+                        class="form-select"
+                        name="item_category"
+                        required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        {% for category in categories %}
+
+                        <option value="{{ category.id }}">
+                            {{ category.name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                    <label>Item Category</label>
+
+                </div>
+
+
+                <!-- Description -->
+                <div class="form-floating mb-3">
+
+                    <textarea
+                        class="form-control"
+                        name="item_description"
+                        style="height:100px"
+                        required
+                    ></textarea>
+
+                    <label>Item Description</label>
+
+                </div>
+
+
+                <!-- Price -->
+                <div class="form-floating mb-3">
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="item_price"
+                        required
+                    >
+
+                    <label>Item Price</label>
+
+                </div>
+
+
+                <!-- Availability -->
+                <div class="form-floating mb-3">
+
+                    <select
+                        class="form-select"
+                        name="item_available"
+                    >
+
+                        <option value="True">
+                            Available
+                        </option>
+
+                        <option value="False">
+                            Not Available
+                        </option>
+
+                    </select>
+
+                    <label>Item Available</label>
+
+                </div>
+
+
+                <div class="d-grid gap-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger"
+                    >
+                        Add Item
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "adminpanel.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-5">
+    <h2>Manage Orders</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ord in ords %}
+            <tr>
+                <td>{{ ord.id }}</td>
+                <td>{{ ord.customer_name }}</td>
+                <td>{{ ord.phone }}</td>
+                <td>
+                    {% for oi in ord.items.all %}
+                        {{ oi.item_name }} × {{ oi.quantity }}<br>
+                    {% endfor %}
+                </td>
+                <td>${{ ord.total_amount }}</td>
+                <td>{{ ord.status }}</td>
+                <td>{{ ord.order_created_at|date:"d M Y" }}</td>
+                <td>
+                    <a href="{% url 'order_update' ord.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'order_delete' ord.id %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+ {% comment %} {% extends "base1.html" %} {% endcomment %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Our Menu</h2>
+
+    <div class="row">
+        {% for item in items %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.item_name }}</h5>
+                    <p class="card-text">{{ item.item_description|truncatewords:15 }}</p>
+                    <p><strong>Category:</strong> {{ item.item_category.name }}</p>
+                    <p><strong>Price:</strong> ₹{{ item.item_price }}</p>
+                    {% if item.item_available %}
+                        <a href="{% url 'add_to_cart' item.item_id %}" class="btn btn-primary">
+                            Add to Cart
+                        </a>
+                    {% else %}
+                        <span class="badge bg-secondary">Out of Stock</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No items available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
+
+

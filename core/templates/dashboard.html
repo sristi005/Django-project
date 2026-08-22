@@ -1,0 +1,229 @@
+{% extends "adminpanel.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafehut Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --cafehut-brown: #4b2e2b;
+      --cafehut-tan: #d9b382;
+      --cafehut-cream: #f8f3ee;
+    }
+    body { background-color: var(--cafehut-cream); font-family: 'Segoe UI', system-ui, sans-serif; }
+    .navbar-cafehut {
+      background-color: var(--cafehut-brown);
+    }
+    .navbar-cafehut .navbar-brand { color: var(--cafehut-tan) !important; font-weight: 600; font-size: 1.3rem; }
+    .metric-card {
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(75, 46, 43, 0.08);
+      background: #fff;
+      padding: 1.25rem 1.5rem;
+      height: 100%;
+    }
+    .metric-card h6 { color: #8a7468; font-weight: 500; text-transform: uppercase; font-size: .75rem; letter-spacing: .05em; margin-bottom: .5rem; }
+    .metric-card .value { font-size: 1.75rem; font-weight: 700; color: var(--cafehut-brown); }
+    .chart-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(75, 46, 43, 0.08);
+      height: 100%;
+    }
+    .unavailable-badge { background-color: #e8590c; }
+    .table thead th { color: #8a7468; font-size: .8rem; text-transform: uppercase; border-bottom: 2px solid var(--cafehut-tan); }
+    h2.page-title { color: var(--cafehut-brown); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-cafehut navbar-expand-lg px-4 mb-4">
+    <span class="navbar-brand">☕ Cafehut Admin</span>
+  </nav>
+
+  <div class="container-fluid px-4 pb-5">
+    <h2 class="page-title mb-4">Dashboard</h2>
+
+    <!-- Metric Cards -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-3">
+        <div class="metric-card">
+          <h6>Revenue Today</h6>
+          <div class="value">₹{{ revenue_today|floatformat:2 }}</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="metric-card">
+          <h6>Revenue (30 days)</h6>
+          <div class="value">₹{{ revenue_month|floatformat:2 }}</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="metric-card">
+          <h6>Orders Today</h6>
+          <div class="value">{{ orders_today }}</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="metric-card">
+          <h6>Pending Orders</h6>
+          <div class="value">{{ pending_orders }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="metric-card">
+          <h6>Total Customers</h6>
+          <div class="value">{{ total_customers }}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="metric-card">
+          <h6>Avg. Order Value (30 days)</h6>
+          <div class="value">₹{{ avg_order_value|floatformat:2 }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-7">
+        <div class="chart-card">
+          <h6 class="mb-3 fw-semibold" style="color: var(--cafehut-brown);">Revenue — Last 7 Days</h6>
+          <canvas id="revenueChart" height="110"></canvas>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="chart-card">
+          <h6 class="mb-3 fw-semibold" style="color: var(--cafehut-brown);">Order Status Breakdown</h6>
+          <canvas id="statusChart" height="110"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="chart-card">
+          <h6 class="mb-3 fw-semibold" style="color: var(--cafehut-brown);">Best-Selling Menu Items</h6>
+          <canvas id="bestSellerChart" height="140"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="chart-card">
+          <h6 class="mb-3 fw-semibold" style="color: var(--cafehut-brown);">⚠️ Unavailable Menu Items</h6>
+          <table class="table table-sm">
+            <thead><tr><th>Item</th><th>Category</th></tr></thead>
+            <tbody>
+              {% for item in unavailable_items %}
+              <tr>
+                <td>{{ item.item_name }}</td>
+                <td><span class="badge unavailable-badge">{{ item.item_category.name }}</span></td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="2" class="text-muted">Everything's available 🎉</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="chart-card">
+      <h6 class="mb-3 fw-semibold" style="color: var(--cafehut-brown);">Recent Orders</h6>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th><th>Date</th></tr>
+          </thead>
+          <tbody>
+            {% for order in recent_orders %}
+            <tr>
+              <td>#{{ order.id }}</td>
+              <td>{{ order.customer_name|default:"—" }}</td>
+              <td>₹{{ order.total_amount|floatformat:2 }}</td>
+              <td>
+                <span class="badge
+                  {% if order.status == 'completed' %}bg-success
+                  {% elif order.status == 'pending' %}bg-warning text-dark
+                  {% elif order.status == 'cancelled' %}bg-danger
+                  {% elif order.status == 'paid' %}bg-info text-dark
+                  {% elif order.status == 'preparing' %}bg-primary
+                  {% else %}bg-secondary{% endif %}">
+                  {{ order.get_status_display }}
+                </span>
+              </td>
+              <td>{{ order.order_created_at|date:"M d, Y H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-muted">No orders yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script>
+    const brown = '#4b2e2b';
+    const tan = '#d9b382';
+
+    new Chart(document.getElementById('revenueChart'), {
+      type: 'line',
+      data: {
+        labels: {{ revenue_trend_labels|safe }},
+        datasets: [{
+          label: 'Revenue (₹)',
+          data: {{ revenue_trend_data|safe }},
+          borderColor: brown,
+          backgroundColor: 'rgba(75,46,43,0.08)',
+          fill: true,
+          tension: 0.35,
+          pointBackgroundColor: brown,
+        }]
+      },
+      options: { plugins: { legend: { display: false } } }
+    });
+
+    new Chart(document.getElementById('statusChart'), {
+      type: 'doughnut',
+      data: {
+        labels: {{ status_labels|safe }},
+        datasets: [{
+          data: {{ status_data|safe }},
+          backgroundColor: ['#4b2e2b', '#d9b382', '#e8590c', '#8a7468', '#c49a6c'],
+        }]
+      },
+    });
+
+    new Chart(document.getElementById('bestSellerChart'), {
+      type: 'bar',
+      data: {
+        labels: {{ best_seller_labels|safe }},
+        datasets: [{
+          label: 'Units Sold',
+          data: {{ best_seller_data|safe }},
+          backgroundColor: tan,
+          borderRadius: 6,
+        }]
+      },
+      options: { plugins: { legend: { display: false } }, indexAxis: 'y' }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+{% endblock content %}

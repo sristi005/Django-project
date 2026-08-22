@@ -1,0 +1,41 @@
+{% extends "adminpanel.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-5">
+    <h2>Update Order #{{ ord.id }}</h2>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5>Items in this order</h5>
+            {% for oi in ord.items.all %}
+                <p>{{ oi.item_name }} × {{ oi.quantity }} — ${{ oi.subtotal }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Customer Name</label>
+            <input type="text" class="form-control" name="customer_name" value="{{ ord.customer_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" name="phone" value="{{ ord.phone }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Status</label>
+            <select class="form-control" name="status">
+                <option value="pending" {% if ord.status == "pending" %}selected{% endif %}>Pending</option>
+                <option value="paid" {% if ord.status == "paid" %}selected{% endif %}>Paid</option>
+                <option value="preparing" {% if ord.status == "preparing" %}selected{% endif %}>Preparing</option>
+                <option value="completed" {% if ord.status == "completed" %}selected{% endif %}>Completed</option>
+                <option value="cancelled" {% if ord.status == "cancelled" %}selected{% endif %}>Cancelled</option>
+            </select>
+        </div>
+        <button class="btn btn-success" type="submit">Update</button>
+        <a href="{% url 'order_page' %}" class="btn btn-secondary">Back</a>
+    </form>
+</div>
+{% endblock %}

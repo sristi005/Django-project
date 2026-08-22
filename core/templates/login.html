@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account</title>
+<link rel="stylesheet" href="log.css">
+<script src="login.js" defer></script>\
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#cc945c;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+/* Container */
+
+.container{
+display:flex;
+width:1100px;
+height:650px;
+background:#452506;
+border-radius:15px;
+overflow:hidden;
+}
+
+/* Left Panel */
+
+.left-panel{
+
+flex:1;
+background:url("edu.jpg") center/cover;
+position:relative;
+padding:0px;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.back-btn{
+position:absolute;
+top:25px;
+right:25px;
+text-decoration:none;
+color:white;
+background:rgba(255,255,255,0.2);
+padding:8px 15px;
+border-radius:20px;
+font-size:14px;
+}
+
+.left-text{
+position:absolute;
+bottom:40px;
+left:30px;
+font-size:22px;
+max-width:250px;
+}
+
+/* Right Panel */
+
+.right-panel{
+flex:1;
+padding:60px;
+}
+
+.right-panel h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.login-link{
+margin-bottom:30px;
+color:#bbb;
+}
+
+.login-link a{
+color:#9a7cff;
+text-decoration:none;
+}
+
+/* Inputs */
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:none;
+background:#eba159;
+color:white;
+}
+
+.name-row{
+display:flex;
+gap:10px;
+}
+
+.password-box{
+position:relative;
+}
+/*
+#togglePassword{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+}
+*/
+.eye{
+position:absolute;
+right:10px;
+top:10px;
+cursor:pointer;
+}
+
+/* Terms */
+
+.terms{
+font-size:14px;
+color:#bbb;
+display:block;
+margin-bottom:20px;
+}
+
+.terms a{
+color:#9a7cff;
+text-decoration:none;
+}
+
+/* Button */
+
+.create-btn{
+width:100%;
+padding:14px;
+background:#fcd0a4;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.create-btn:hover{
+background:#6a4ee6;
+}
+
+/* Divider */
+
+.divider{
+text-align:center;
+margin:20px 0;
+color:#aaa;
+position:relative;
+}
+
+.divider::before,
+.divider::after{
+content:"";
+position:absolute;
+top:50%;
+width:35%;
+height:1px;
+background:#555;
+}
+
+.divider::before{
+left:0;
+}
+
+.divider::after{
+right:0;
+}
+
+/* Social Buttons */
+
+.social-buttons{
+display:flex;
+gap:15px;
+}
+
+.social-buttons button{
+flex:1;
+padding:12px;
+border-radius:8px;
+border:1px solid #555;
+background:transparent;
+color:white;
+cursor:pointer;
+}
+
+.social-buttons button:hover{
+background:#3d3655;
+}
+
+.popup {
+    color:#6a4ee6;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 400px;
+  background-color: #fffefe;
+  color: #0b0000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Left Section -->
+    <div class="left-panel">
+        <div class="logo">
+            <img src="{% static 'images/login.webp' %}" style=" height:100vh; width:70vh" > 
+
+        </div>
+        <a href="#" class="back-btn">Back to website →</a>
+
+        <div class="left-text">
+            <h2><br></h2>
+        </div>
+    </div>
+
+
+    <!-- Right Section -->
+    <div class="right-panel">
+
+        <h1>Create an account</h1>
+        <p class="login-link">Already have an account? <a href="/signin"><u>Log in</u></a></p>
+    
+    <form method="POST">
+        {% csrf_token %}
+    <div class="name-row">
+        <input type="text" name="first_name" placeholder="First name" required>
+        <input type="text" name="last_name" placeholder="Last name" required>
+    </div>
+
+    <input type="email" name="email" placeholder="Email" required>
+
+    <div class="password-box">
+        <input type="password" name="password" placeholder="Enter your password" id="password" required>
+        <span class="eye" onclick="togglePassword()">👁</span>
+    </div>
+
+    <label class="terms">
+        <input type="checkbox" id="terms" required>
+        I agree to the 
+        <div class="popup" onclick="myFunction()">Terms & Conditions
+    
+
+    
+  <span class="popuptext" id="myPopup">1.You agree to use the site responsibly and for educational purposes only.<br>
+
+2.Your account credentials must be kept private; you are responsible for any activity under your account.<br>
+
+3.All information on this website is provided for educational and informational purposes; the college is not liable for errors or outdated content.<br>
+
+4.You may not copy, reproduce, or distribute content from the website without permission.<br>
+
+5.By submitting your information, you consent to the college collecting and storing your data securely.<br>
+
+6.The college may update the website or terms at any time without prior notice.<br><br>
+
+Clicking “I Agree” confirms that you have read and accepted these terms.</span>
+</div>
+</label>
+
+    <button type="submit" class="create-btn">Create account</button>
+
+    <div class="divider">
+                <span>Or register with</span>
+            </div>
+
+           
+            <div class="social-buttons">
+                <button class="signin">Sign In</button>
+            </div>
+            
+</form>
+
+    </div>
+
+</div>
+
+<script>
+     // function handleFormSubmit(event) {
+        // event.preventDefault(); // Prevent form from submitting to PHP
+        
+        // Get form data
+        const form = document.getElementById('loginForm');
+        const formData = new FormData(form);
+        
+        // Store form data
+        const userData = {
+            firstName: formData.get('first_name'),
+            lastName: formData.get('last_name'),
+            email: formData.get('email'),
+            password: formData.get('password'),
+            timestamp: new Date().toLocaleString()
+        };
+        
+        // Save to localStorage
+        const allUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        allUsers.push(userData);
+        localStorage.setItem('registeredUsers', JSON.stringify(allUsers));
+        
+        // Show success message
+        alert(`Account created successfully!\nEmail: ${userData.email}`);
+        
+        // Clear all form fields
+        form.reset();
+    } 
+
+    function togglePassword() {
+  const passwordField = document.getElementById("password");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+  } else {
+    passwordField.type = "password";
+  }
+}
+
+// When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+
+// document.getElementById("loginForm").addEventListener("submit", function(e) {
+//     e.preventDefault(); // prevent page reload
+
+    const formData = new FormData(this);
+
+    fetch("register.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => alert(data));
+});
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+{% extends "base1.html" %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+{% load static %}
+
+
+<html>
+    <head>
+        <style>
+          h3 {color:white;}
+          p {color:black;}
+          p1 {color:white;}
+          .my-image{
+            width: 250px; 
+            height: 250px;
+            border: 2px solid #ddd; /* Adds a solid border */
+            border-radius: 8px; /* Rounds the corners */
+            padding: 5px;
+          }
+
+          .image{
+            width: 250px; 
+            height: 250px;
+            border: 2px solid #ddd; /* Adds a solid border */
+            border-radius: 8px; /* Rounds the corners */
+            padding: 5px;
+          }
+
+
+
+  /* Create two equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 25%;
+                padding: 80px;
+                height: 400px; /* Should be removed. Only for demonstration */
+            }
+  
+
+  /* Clear floats after the columns */
+            .row:after {
+                ontent: "";
+                display: table;
+                clear: both;
+            }
+
+.container{
+    align-items: center;
+}  
+
+        </style>
+    </head>
+
+    <body>
+        <center>
+            
+        <h1>sandwich</h1>
+        </center>
+    <hr></hr>
+
+
+<center>
+  <div class="row" style="background-color:white;">
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/cheesesand.webp' %}"  class="my-image" >
+    </h2>
+  </div>
+    <div class="column" style="background-color:;">
+    <h4>Cheese Sandwich</h4>
+    <p>A simple and satisfying grilled cheese sandwich, perfectly toasted and oozing with melted cheese. </p>
+    <p>$32</p>
+
+               
+            </div>            
+          
+  
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/veggie.jpg' %}"  class="my-image" >
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+     <h4>Veg Sandwich</h4>
+    <p>a fresh and flavorful combination of crisp vegetables </p>
+    <p>$32</p>
+  
+  </div>
+
+   <div class="row" style="background-color:#5c470f";>
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/paneer.jpg' %}"  class="my-image">
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h3>Paneer Sandwich</h3>
+    <p1> Paneer Sandwich is a quick, delicious and protein-packed Indian sandwich</p1><br>
+    <p1>$32</p1>
+  
+  </div>
+
+ 
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/chick.jpg' %}" class="my-image">
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h3>Chicken Sandwich</h3>
+    <p1>perfectly seasoned chicken breast, nestled between toasted buns </p1><br>
+    <p1>$32</p1>
+ 
+  </div>
+
+  
+  
+
+  
+
+
+    </body>
+</html>
+
+{% endblock content %}
+
+
+
+{% comment %} wraps & puffs {% endcomment %}
+
+
+{% extends "base1.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+
+        <style>
+            h1 {color:black}
+          p {color:black;}
+
+
+
+  /* Create two equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 33%;
+                padding: 80px;
+                height: 400px; /* Should be removed. Only for demonstration */
+            }
+  
+
+  /* Clear floats after the columns */
+            .row:after {
+                ontent: "";
+                display: table;
+                clear: both;
+            }
+
+.container{
+    align-items: center;
+}  
+        </style>
+        
+
+    </head>
+
+
+    <body>
+         <center>    
+        <h1>Puffs/Wraps</h1>
+        </center>
+    <hr></hr>
+
+
+<center>
+  <div class="row">
+  <div class="column" style="background-color:white;">
+    <h2>
+        <img src="{% static 'images/patikka.jpg' %}"  width="80" 
+     height="80" >
+    </h2>
+    <h3>Paneer Tikka Wraps</h3>
+    <p>Savor the smoky,spiced delight,featuring marinated paneer,fresh vegetables and a chutney</p>
+    <p>$32</p>
+    <button type="submit" style="background-color: #be951aff; color: white; border: none; padding: 5px 10px;">
+                    Add to cart
+                </button>
+  </div>
+  <div class="column" style="background-color:white;">
+    <h2>
+        <img src="{% static 'images/mayo.jpg' %}"  width="80" 
+     height="80" >
+    </h2>
+    <h3>Chicken Mayo Wrap</h3>
+    <p>Roasted chicken, freshly chopped veggies and Hellmann's Tangy Mayonnaise </p>
+    <p>$32</p>
+    <button type="submit" style="background-color: #be951aff; color: white; border: none; padding: 5px 10px;">
+                    Add to cart
+                </button>
+  </div>
+  <div class="column" style="background-color:white;">
+    <h2>
+        <img src="{% static 'images/vegpuff.webp' %}"  width="80" 
+     height="80" >
+    </h2>
+    <h3>Veg Puff</h3>
+    <p>our Veg Puff features a flaky, golden-brown pastry crust filled with a flavorful blend of spiced vegetables.</p>
+    <p>$32</p>
+   <button type="submit" style="background-color: #be951aff; color: white; border: none; padding: 5px 10px;">
+                    Add to cart
+                </button>
+  </div>
+
+  <div class="row">
+  <div class="column" style="background-color:white;">
+    <h2>
+        <img src="{% static 'images/creamy.jpg' %}"  width="80" 
+     height="80" >
+    </h2>
+    <h3>Creamy Chicken Puff</h3>
+    <p>A flaky, buttery puff pastry filled with tender chicken in a rich, creamy sauce, served fresh from our oven. </p>
+    <p>$32</p>
+    <button type="submit" style="background-color: #be951aff; color: white; border: none; padding: 5px 10px;">
+                    Add to cart
+                </button>
+              </div>
+  <div class="column" style="background-color:white;">
+    <h2>
+        <img src="{% static 'images/egg.png' %}"  width="80" 
+     height="80" >
+    </h2>
+    <h3>Egg Puff</h3>
+    <p>A delicious and flaky Egg Puff, filled with a spiced egg mixture, perfect for a satisfying snack or light meal. </p>
+    <p>$32</p>
+    <button type="submit" style="background-color: #be951aff; color: white; border: none; padding: 5px 10px;">
+                    Add to cart
+                </button>
+  </div>
+</div>
+
+    </body>
+</html>
+
+{% endblock content %}
+
+
+
+{% comment %} baked {% endcomment %}
+
+
+{% extends "base1.html" %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+{% load static %}
+
+
+<html>
+    <head>
+        <style>
+          h3 {color:white;}
+          p {color:black;}
+          p1 {color:white;}
+          .my-image{
+            width: 250px; 
+            height: 250px;
+            border: 2px solid #ddd; /* Adds a solid border */
+            border-radius: 8px; /* Rounds the corners */
+            padding: 5px;
+          }
+
+          .image{
+            width: 250px; 
+            height: 250px;
+            border: 2px solid #ddd; /* Adds a solid border */
+            border-radius: 8px; /* Rounds the corners */
+            padding: 5px;
+          }
+
+
+
+  /* Create two equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 25%;
+                padding: 80px;
+                height: 400px; /* Should be removed. Only for demonstration */
+            }
+  
+
+  /* Clear floats after the columns */
+            .row:after {
+                ontent: "";
+                display: table;
+                clear: both;
+            }
+
+.container{
+    align-items: center;
+}  
+
+        </style>
+    </head>
+
+    <body>
+        <center>
+            
+        <h1>Baked</h1>
+        </center>
+    <hr></hr>
+
+
+<center>
+  <div class="row" style="background-color:white;">
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/mocha.jpg' %}"  class="my-image" >
+    </h2>
+  </div>
+    <div class="column" style="background-color:;">
+     <h4>Mocha Brownies</h4>
+    <p>Rich, chocolatey, and infused with the subtle aroma of espresso</p>
+    <p>$32</p>
+
+ </div>            
+          
+  
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/peanut.jpg' %}"  class="my-image" >
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h4>Peanut Butter Brownies</h4>
+    <p>Layered peanut butter brownies have a fudgy brownie base </p>
+    <p>$32</p>
+  
+  </div>
+
+   <div class="row" style="background-color:#7d0b35";>
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/strawberry.jpg' %}"  class="my-image">
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h3>Strawberry Brownies</h3>
+    <p1>Decadent chocolate brownies with a delightful strawberry surprise</p1><br>
+    <p1>$32</p1>
+  
+  </div>
+
+ 
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/doublechocomuffins.jpg' %}" class="my-image">
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h3>Double Choco Chip Muffin</h3>
+    <p1>Rich chocolate batter studded with even more chocolate chips </p1><br>
+    <p1>$32</p1>
+ 
+  </div>
+
+   <div class="row" style="background-color:white;">
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/raspberry.jpg' %}"  class="my-image" >
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h4>Ruspberry Muffins</h4>
+    <p>Enjoy our warm, freshly baked Raspberry Muffins, bursting with juicy raspberries </p>
+    <p>$32</p>
+   
+  </div>
+  <div class="column" style="background-color:;">
+    <h2>
+        <img src="{% static 'images/choco.jpg' %}"  class="my-image">
+    </h2>
+</div>
+    <div class="column" style="background-color:;">
+    <h4>Chocolate Cookies </h4>
+    <p>Rich, decadent, and utterly irresistible, a perfect treat to satisfy any sweet craving. </p>
+    <p>$32</p>
+    
+  </div>
+
+  <div class="row" style="background-color:#7d0b35;">
+  <div class="column">
+    <h2>
+        <img src="{% static 'images/redvelvet.jpg' %}" class="my-image">
+    </h2>
+</div>
+    <div class="column ">
+    <h3>Redvelvet Cookies</h3>
+    <p1> Easy and delicious red velvet cookie bars, stuffed with white chocolate chips</p1>
+    <p1>$32</p1>
+ 
+  </div>
+  
+
+    </body>
+</html>
+
+{% endblock content %}

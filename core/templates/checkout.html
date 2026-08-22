@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-5">
+    <h2>Checkout</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Order Summary</h5>
+            {% for ci in cart.items.all %}
+                <p>{{ ci.menu_item.item_name }} × {{ ci.quantity }} — ${{ ci.subtotal }}</p>
+            {% endfor %}
+            <hr>
+            <strong>Total: ${{ cart.total_price }}</strong>
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Delivery Address</label>
+            <textarea class="form-control" name="address" rows="3" required></textarea>
+        </div>
+        <button class="btn btn-success" type="submit">Continue to Payment</button>
+        <a href="{% url 'cart_page' %}" class="btn btn-secondary">Back to Cart</a>
+    </form>
+</div>
+{% endblock %}
