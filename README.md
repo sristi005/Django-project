@@ -1,18 +1,18 @@
 
-# CAFE HUT
+# ☕ CAFE HUT
 
 A full-stack cafe ordering website developed using **Django** that allows users to browse the menu, add items to a cart, place orders, and view their order history. The project also includes an **admin section** for managing and monitoring customer orders.
 
 
-## Project Overview
+## 📌 Project Overview
 The CAFE HUT Website provides a simple and user-friendly platform for customers to order cafe items online.
 
 Users can create an account, log in, explore different menu categories, add multiple items to their cart, adjust quantites, proceed to checkout and view their previous orders.
 
 The project demonstrate the implementation of **Django, database management, user authentication, CRUD operations and dynamic web pages**.
-## Features
+## ✨ Features
 
-### User Features
+### 👤User Features
 
 - User registration and login
 - Secure user authentication
@@ -25,7 +25,7 @@ The project demonstrate the implementation of **Django, database management, use
 - View previous orders
 - Logout functionality
 
-### Shopping Cart
+### 🛒Shopping Cart
 
 - Add multiple products to the cart
 - Update product quantities
@@ -33,14 +33,14 @@ The project demonstrate the implementation of **Django, database management, use
 - Automatically calculate the total price
 - Proceed to checkout
 
-### Admin Features
+### 🛡️Admin Features
 
 - Admin login
 - View customer orders
 - Monitor placed orders
 - Manage website data through the Django admin panel
 
-### Other Pages
+### 🔗Other Pages
 
 - Home
 - Menu
@@ -51,7 +51,7 @@ The project demonstrate the implementation of **Django, database management, use
 
 
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 **Frontend:** HTML, CSS
 
@@ -64,7 +64,7 @@ The project demonstrate the implementation of **Django, database management, use
 **Development Environment:** VS Code
 
 
-## Installation
+## ⚙️ Installation
 
 ### 1. Clone the Repository
 
@@ -114,10 +114,10 @@ Open the local server in your browser:
 ```bash
 http://127.0.0.1:8000/
 ```
-## Database
+## 🗄️Database
 
 The project uses **MySQL** as the database management system. Django ORM is used to manage user accounts, menu items, cart details, and customer orders efficiently. 
-## What I Learned
+## 📚 What I Learned
 
 * Building dynamic web applications using Django.
 * Connecting Django with a MySQL database.
@@ -127,18 +127,18 @@ The project uses **MySQL** as the database management system. Django ORM is used
 * Designing a responsive and user-friendly website.
 
 
-## Future Improvements
+## 🚀 Future Improvements
 
 * Online payment gateway integration.
 * Order tracking System.
 * Customer profile management.
 * Fully responsive mobile-friendly design.
 * Product search and filtering. 
-## Developer
+## 👩‍💻 Developer
 ### Sristi Biswas
 B.Tech in Computer Science & Engineering
 Interested in Web Development and Software Development.
-## License
+## 📄 License
 
 This project is created for educational and portfolio purposes.
 
