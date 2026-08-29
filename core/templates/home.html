@@ -11,51 +11,271 @@
 <html>
 <head>
 <style>
-h1 {color:black}
-p {color:black;}
+/* ---------- Coffee Hut design tokens ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
 
+:root {
+  --espresso: #2b1a12;   /* darkest roast - headings, text */
+  --roast: #5c3a21;      /* medium roast - secondary text, borders */
+  --cream: #fbf4e6;      /* milk foam background */
+  --cream-deep: #f2e5cd; /* slightly deeper cream for panels */
+  --caramel: #c68b3d;    /* caramel gold accent */
+  --caramel-dark: #a86f28;
+  --burgundy: #7a2a2a;   /* cherry accent for CTAs */
+  --sage: #5c7a5e;       /* coffee-plant green accent */
+}
 
+* { box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(198,139,61,0.08), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(92,58,33,0.06), transparent 45%);
+  font-family: 'Work Sans', sans-serif;
+  color: var(--espresso);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 16px 60px;
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  color: var(--espresso);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Hero heading */
+h1:first-of-type {
+  font-size: 44px;
+  max-width: 780px;
+  margin: 40px auto 20px;
+  line-height: 1.25;
+}
+
+/* Section headings ("Available Coffees", "Delicious Snacks...", "Be A Member...") */
+h1[style*="font-size:40px"] {
+  position: relative;
+  font-weight: 900;
+  color: var(--espresso);
+  letter-spacing: 0.5px;
+}
+h1[style*="font-size:40px"]::before {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin: 0 auto 14px;
+  background: var(--caramel);
+  border-radius: 2px;
+}
+
+p {
+  color: var(--roast);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Signature element: bean divider ---------- */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--roast) 20%, var(--roast) 80%, transparent);
+  opacity: 0.35;
+  margin: 48px auto !important;
+  position: relative;
+  width: 80% !important;
+}
+hr::after {
+  content: "\2022 \2022 \2022";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--cream);
+  padding: 0 14px;
+  color: var(--caramel-dark);
+  letter-spacing: 10px;
+  font-size: 18px;
+}
+
+/* ---------- Carousel ---------- */
+.carousel {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto 10px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px -12px rgba(43,26,18,0.45);
+}
+
+.carousel-img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel-inner img {
+  filter: saturate(1.05) contrast(1.02);
+}
+
+/* ---------- Coffee gallery (Available Coffees images) ---------- */
+.coffee-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.coffee-gallery img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--cream);
+  outline: 2px solid var(--caramel);
+  outline-offset: 4px;
+  box-shadow: 0 12px 24px -10px rgba(43,26,18,0.5);
+  transition: transform 0.25s ease, outline-color 0.25s ease;
+}
+.coffee-gallery img:hover {
+  transform: translateY(-6px) scale(1.04);
+  outline-color: var(--burgundy);
+}
+
+/* ---------- Snacks menu table ---------- */
+.menu-table {
+  border-collapse: separate !important;
+  border-spacing: 0;
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+  background: var(--cream-deep);
+  border: none !important;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px -14px rgba(43,26,18,0.35);
+}
+.menu-table td {
+  border: 1px solid rgba(92,58,33,0.15) !important;
+  padding: 18px;
+  vertical-align: middle;
+}
+.menu-table img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px -8px rgba(43,26,18,0.4);
+}
+.menu-table ul {
+  list-style: none;
+  margin: 4px 0;
+  padding: 0;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  color: var(--espresso);
+}
+.menu-table ul::before {
+  content: "\2615\FE0E  ";
+  color: var(--caramel-dark);
+}
+
+/* ---------- Join Us card ---------- */
+.card {
+  border: none !important;
+  border-radius: 18px !important;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -18px rgba(43,26,18,0.5);
+  background: var(--cream-deep);
+}
+.card-header.bg-success {
+  background: var(--espresso) !important;
+  border-bottom: 3px solid var(--caramel);
+  padding: 18px 0;
+}
+.card-header h5 {
+  font-family: 'Fraunces', serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.card-body {
+  padding: 32px 28px;
+}
+.form-control {
+  border: 1px solid rgba(92,58,33,0.3);
+  border-radius: 10px !important;
+}
+.form-control:focus {
+  border-color: var(--caramel);
+  box-shadow: 0 0 0 0.2rem rgba(198,139,61,0.25);
+}
+.form-floating label {
+  color: var(--roast);
+}
+.btn-danger {
+  background-color: var(--burgundy) !important;
+  border-color: var(--burgundy) !important;
+  border-radius: 10px !important;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 12px 0;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.btn-danger:hover {
+  background-color: var(--caramel-dark) !important;
+  border-color: var(--caramel-dark) !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Video ---------- */
+video {
+  border-radius: 16px;
+  box-shadow: 0 18px 40px -14px rgba(43,26,18,0.45);
+  margin-top: 20px;
+}
+
+/* ---------- Popups (kept functional, restyled) ---------- */
 .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid black;
+    background-color: var(--cream);
+    padding: 24px;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px -10px rgba(43,26,18,0.5);
     z-index: 1000;
-  }
-  .overlay {
+    font-family: 'Work Sans', sans-serif;
+}
+.overlay {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(43,26,18,0.55);
     z-index: 999;
-  }
-
-  .carousel {
-    width: 100%;
-    max-width: 900px;
-    margin: 20px auto;
 }
 
-.carousel-img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-    object-position: center;
+@media (max-width: 600px) {
+  h1:first-of-type { font-size: 30px; }
+  .coffee-gallery img { width: 120px; height: 120px; }
+  .menu-table img { width: 90px; height: 90px; }
 }
-
-
-    </style>
+</style>
 </head>
 
 
-<BODY>
+<body>
     <center>
 
     <div id="carouselExampleIndicators" class="carousel slide">
@@ -107,14 +327,14 @@ every mood. Brewed with love, served with a smile – that’s the Coffee Hut
  <h1 style="font-size:40px; text-align:center"> Available Coffees </h1>
 
 <div style="margin-top:60px;">
-<center>
+<div class="coffee-gallery">
 <img src="{% static 'images/latte.jpg' %}">
 <img src="{% static 'images/americano.jpg' %}">
 <img src="{% static 'images/cappuccino.jpg' %}">
 <img src="{% static 'images/frappe.jpg' %}">
 <img src="{% static 'images/macchiato.jpg' %}">
-
-</center></div>
+</div>
+</div>
 
 <p style="font-size:20px"> At Coffee Hut, we serve a delightful range of coffee to match every mood and taste. 
     Enjoy the rich intensity of a classic Espresso, or the smooth, milky comfort of a Latte. 
@@ -132,9 +352,9 @@ every mood. Brewed with love, served with a smile – that’s the Coffee Hut
  <div style="margin-top:60px;"></div>
  
  
-
+<div class="table">
      
-      <TABLE BORDER="1">
+      <TABLE BORDER="1" class="menu-table">
 <P ALIGN=CENTER>
 
 <TR ALIGN=CENTER>
@@ -171,7 +391,10 @@ every mood. Brewed with love, served with a smile – that’s the Coffee Hut
 </TD>
 <TD> <img src="{% static 'images/toast.jpg' %}"> </TD>
 </TR>
-</TABLE><br>
+</TABLE>
+</div>
+<br>
+
 
 <p style="font-size:20px">At Coffee Hut, it's not just about great coffee — we’ve got delicious snacks
      to make your experience even better! From crispy sandwiches and cheesy wraps 
@@ -193,7 +416,7 @@ every mood. Brewed with love, served with a smile – that’s the Coffee Hut
    
     </center>
 
-    </BODY>
+  </body>
 </HTML>
 <div class="col-lg-8 mx-auto my-5">
     <div class="card">

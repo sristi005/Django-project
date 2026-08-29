@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Create Account</title>
-<link rel="stylesheet" href="log.css">
-<script src="login.js" defer></script>\
+
+
 <style>
     *{
 margin:0;
@@ -51,21 +51,9 @@ font-size:22px;
 font-weight:bold;
 }
 
-.back-btn{
-position:absolute;
-top:25px;
-right:25px;
-text-decoration:none;
-color:white;
-background:rgba(255,255,255,0.2);
-padding:8px 15px;
-border-radius:20px;
-font-size:14px;
-}
-
 .left-text{
 position:absolute;
-bottom:40px;
+top: 30px;
 left:30px;
 font-size:22px;
 max-width:250px;
@@ -278,10 +266,9 @@ background:#3d3655;
             <img src="{% static 'images/login.webp' %}" style=" height:100vh; width:70vh" > 
 
         </div>
-        <a href="#" class="back-btn">Back to website →</a>
 
         <div class="left-text">
-            <h2><br></h2>
+            <h2>CAFEHUT</h2>
         </div>
     </div>
 
@@ -335,8 +322,7 @@ Clicking “I Agree” confirms that you have read and accepted these terms.</sp
                 <span>Or register with</span>
             </div>
 
-           
-            <div class="social-buttons">
+            <div class="social-buttons" onclick="window.location.href='signin'">
                 <button class="signin">Sign In</button>
             </div>
             

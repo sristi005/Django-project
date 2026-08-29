@@ -6,55 +6,135 @@
 
 
 <style>
-  h3 { color: white; }
-  p1 { color: white; }
+  /* ---------- Coffee Hut design tokens (matches every other page) ---------- */
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
 
-  .order-card {
-    border: none;
-    border-radius: .5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    background: white;
+  :root {
+    --espresso: #2b1a12;
+    --roast: #5c3a21;
+    --cream: #fbf4e6;
+    --cream-deep: #f2e5cd;
+    --caramel: #c68b3d;
+    --caramel-dark: #a86f28;
   }
 
-  .order-header {
-    background-color: #381501;
+  body {
+  background: var(--cream);
+  }
+
+  /* Everything below is scoped under .ch-orders-wrap so it can't bleed into
+     base.html's navbar. The old h3 { color: white } and p1 { color: white }
+     rules are removed: neither tag is used in this template (headings use
+     h1, item labels use span/strong), and both were only ever going to make
+     text invisible against a light card. */
+
+  .ch-orders-wrap h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    color: var(--espresso);
+    letter-spacing: 0.5px;
+  }
+
+  .ch-orders-wrap hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--roast) 20%, var(--roast) 80%, transparent);
+    opacity: 0.35;
+    margin: 12px auto 40px !important;
+    position: relative;
+    width: 60%;
+  }
+  .ch-orders-wrap hr::after {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--cream);
+    padding: 0 14px;
+    color: var(--caramel-dark);
+    letter-spacing: 10px;
+    font-size: 16px;
+  }
+
+  .ch-orders-wrap .order-card {
+    border: none;
+    border-radius: .75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 24px -12px rgba(43,26,18,0.25);
+    background: white;
+    transition: box-shadow .2s ease;
+  }
+
+  .ch-orders-wrap .order-card:hover {
+    box-shadow: 0 16px 30px -14px rgba(43,26,18,0.35);
+  }
+
+  .ch-orders-wrap .order-header {
+    background-color: var(--espresso);
     color: white;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
-    padding: .75rem 1.25rem;
+    border-top-left-radius: .75rem;
+    border-top-right-radius: .75rem;
+    padding: .9rem 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    font-family: 'Work Sans', sans-serif;
   }
 
-  .status-badge {
-    padding: .3rem .7rem;
+  .ch-orders-wrap .order-header strong {
+    font-family: 'Fraunces', serif;
+    letter-spacing: .3px;
+  }
+
+  .ch-orders-wrap .status-badge {
+    padding: .3rem .8rem;
     border-radius: 1rem;
     font-size: .8rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: capitalize;
+    letter-spacing: .3px;
   }
 
-  .status-pending    { background-color: #fff3cd; color: #856404; }
-  .status-paid        { background-color: #cff4fc; color: #055160; }
-  .status-preparing   { background-color: #ffe5b4; color: #7a4a00; }
-  .status-completed   { background-color: #d1e7dd; color: #0f5132; }
-  .status-cancelled   { background-color: #f8d7da; color: #842029; }
+  .ch-orders-wrap .status-pending      { background-color: #fff3cd; color: #856404; }
+  .ch-orders-wrap .status-paid         { background-color: #cff4fc; color: #055160; }
+  .ch-orders-wrap .status-preparing    { background-color: #ffe5b4; color: #7a4a00; }
+  .ch-orders-wrap .status-completed    { background-color: #d1e7dd; color: #0f5132; }
+  .ch-orders-wrap .status-cancelled    { background-color: #f8d7da; color: #842029; }
 
-  .order-item-row {
+  .ch-orders-wrap .order-item-row {
     display: flex;
     justify-content: space-between;
-    padding: .4rem 0;
-    border-bottom: 1px solid #f0f0f0;
+    padding: .5rem 0;
+    border-bottom: 1px solid var(--cream-deep);
+    color: var(--roast);
   }
 
-  .order-item-row:last-child {
+  .ch-orders-wrap .order-item-row:last-child {
     border-bottom: none;
+  }
+
+  .ch-orders-wrap .btn-coffee {
+    background-color: var(--espresso);
+    border-color: var(--espresso);
+    color: white;
+    border-radius: .5rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+    padding: .6rem 1.4rem;
+    transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
+  }
+
+  .ch-orders-wrap .btn-coffee:hover {
+    background-color: var(--caramel-dark);
+    border-color: var(--caramel-dark);
+    color: white;
+    transform: translateY(-2px);
   }
 </style>
 
-<div class="container my-4">
+<div class="container my-4 ch-orders-wrap" style="background-color:#f2e5cd">
   <h1 class="text-center mb-4">MY ORDERS</h1>
   <hr>
 
@@ -95,5 +175,6 @@
     </div>
   {% endif %}
 </div>
+</body>
 
 {% endblock content %}

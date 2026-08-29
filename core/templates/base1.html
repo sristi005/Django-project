@@ -19,6 +19,98 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <style>
+            /* ---------- Coffee Hut design tokens (matches all pages built on this base) ---------- */
+            @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+            :root {
+                --espresso: #2b1a12;
+                --roast: #5c3a21;
+                --cream: #fbf4e6;
+                --cream-deep: #f2e5cd;
+                --caramel: #c68b3d;
+                --caramel-dark: #a86f28;
+            }
+
+            body {
+                font-family: 'Work Sans', sans-serif;
+                background: var(--cream);
+            }
+
+            /* Scoped to "nav.navbar" so nothing here touches the page-content
+               .container elements that live outside the nav (coffee.html,
+               fri.html, etc. each define their own .ch-menu-wrap container). */
+            nav.navbar.bg-light {
+                background-color: var(--cream-deep) !important;
+                border-bottom: 3px solid var(--caramel);
+                box-shadow: 0 6px 18px -10px rgba(43,26,18,0.35);
+                padding: 10px 0;
+            }
+
+            nav.navbar .navbar-brand {
+                font-family: 'Fraunces', serif;
+                font-weight: 900;
+                font-size: 26px;
+                letter-spacing: 1px;
+                color: var(--espresso) !important;
+            }
+
+            nav.navbar .navbar-nav .nav-link {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 6px 14px !important;
+                border-radius: 12px;
+                transition: background-color .2s ease, transform .2s ease;
+            }
+
+            nav.navbar .navbar-nav .nav-link:hover {
+                background-color: rgba(198,139,61,0.18);
+                transform: translateY(-2px);
+            }
+
+            nav.navbar .navbar-nav .nav-link img {
+                transition: transform .2s ease;
+            }
+
+            nav.navbar .navbar-nav .nav-link:hover img {
+                transform: scale(1.08);
+            }
+
+            nav.navbar .navbar-toggler {
+                border-color: var(--caramel);
+            }
+
+            nav.navbar .btn-outline-success {
+                border-color: var(--espresso);
+                color: var(--espresso);
+                border-radius: 10px;
+                font-weight: 600;
+                transition: background-color .2s ease, color .2s ease;
+            }
+
+            nav.navbar .btn-outline-success:hover {
+                background-color: var(--espresso);
+            }
+
+            nav.navbar .btn-outline-success:hover .nav-link {
+                color: white !important;
+            }
+
+            nav.navbar .btn-outline-success .nav-link {
+                padding: 0 !important;
+                display: inline;
+            }
+
+            /* Toast messages, reskinned to match the brand instead of Bootstrap's
+               default green - only affects .toast, which is unique to this
+               base template's flash-message markup. */
+            .toast.bg-success {
+                background-color: var(--espresso) !important;
+                border-left: 4px solid var(--caramel) !important;
+            }
+        </style>
     </head>
 
     <body>
@@ -26,7 +118,9 @@
             <nav
                 class="navbar navbar-expand-sm navbar-light bg-light">           
                 <div class="container">
-                    <a class="navbar-brand text-black" href="#">MENU</a>    
+                    <a class="navbar-brand text-black" href="#">
+                        <img src="{% static 'images/cafe_logo_transparent.png' %}" alt="Company Name Logo" width="90" height="90">
+                        MENU</a>    
                     <button
                         class="navbar-toggler d-lg-none"
                         type="button"

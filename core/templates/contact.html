@@ -26,84 +26,227 @@
         <link rel>  
 
         <style>
-            .centered {
-                color: white;
-                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-                font-size:100px;
-                position: absolute;
-                top: 25%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            /* ---------- Coffee Hut design tokens (matches home & about pages) ---------- */
+            @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+            :root {
+                --espresso: #2b1a12;
+                --roast: #5c3a21;
+                --cream: #fbf4e6;
+                --cream-deep: #f2e5cd;
+                --caramel: #c68b3d;
+                --caramel-dark: #a86f28;
+                --burgundy: #7a2a2a;
             }
 
-            * {
+            /* All rules below are scoped to ch- prefixed classes that exist only on
+               this page, so they can never leak into the navbar or base.html. */
+
+            body {
+                background: var(--cream);
+                background-image:
+                    radial-gradient(circle at 15% 10%, rgba(198,139,61,0.08), transparent 40%),
+                    radial-gradient(circle at 85% 30%, rgba(92,58,33,0.06), transparent 45%);
+                font-family: 'Work Sans', sans-serif;
+                color: var(--espresso);
+            }
+
+            /* Hero banner image + overlay title */
+            .ch-hero-wrap {
+                position: relative;
+                max-width: 1100px;
+                margin: 30px auto 0;
                 box-sizing: border-box;
             }
 
-  /* Create two equal columns that floats next to each other */
-            .column {
+            .ch-hero-wrap img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 20px;
+                box-shadow: 0 20px 45px -16px rgba(43,26,18,0.5);
+                filter: brightness(0.65) saturate(1.1);
+                box-sizing: border-box;
+            }
+
+            .ch-hero-title {
+                color: var(--cream);
+                text-shadow: none;
+                font-family: 'Fraunces', serif;
+                font-weight: 900;
+                font-size: 56px;
+                letter-spacing: 1px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                white-space: nowrap;
+            }
+
+            .ch-hero-title::after {
+                content: "";
+                display: block;
+                width: 60px;
+                height: 3px;
+                margin: 14px auto 0;
+                background: var(--caramel);
+                border-radius: 2px;
+            }
+
+            /* Intro text block */
+            .ch-intro {
+                max-width: 720px;
+                margin: 40px auto;
+                padding: 30px 36px;
+                background: var(--cream-deep);
+                border-radius: 18px;
+                box-shadow: 0 14px 30px -14px rgba(43,26,18,0.3);
+                box-sizing: border-box;
+            }
+
+            .ch-intro p {
+                color: var(--roast) !important;
+                font-family: 'Work Sans', sans-serif !important;
+                font-style: normal !important;
+                line-height: 1.75;
+            }
+
+            .ch-intro u {
+                color: var(--caramel-dark);
+                font-weight: 700;
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-size: 90%;
+            }
+
+            /* Contact cards */
+            .ch-contact-row {
+                max-width: 1100px;
+                margin: 20px auto 0;
+                padding: 0 24px;
+                box-sizing: border-box;
+            }
+
+            .ch-contact-card {
                 float: left;
                 width: 33%;
                 padding: 10px;
-                height: 300px; /* Should be removed. Only for demonstration */
+                box-sizing: border-box;
+                text-align: center;
             }
-  
 
-  /* Clear floats after the columns */
-            .row:after {
-                ontent: "";
+            .ch-contact-card > div {
+                background: var(--cream-deep) !important;
+                border-radius: 18px;
+                box-shadow: 0 14px 30px -14px rgba(43,26,18,0.3);
+                padding: 30px 20px;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .ch-contact-card > div:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 20px 40px -16px rgba(43,26,18,0.4);
+            }
+
+            .ch-contact-card h2 {
+                margin: 0 0 10px;
+            }
+
+            .ch-contact-card h2 img {
+                background: var(--caramel);
+                padding: 12px;
+                border-radius: 50%;
+                box-shadow: 0 10px 20px -10px rgba(43,26,18,0.4);
+                box-sizing: content-box;
+            }
+
+            .ch-contact-card h3 {
+                font-family: 'Fraunces', serif;
+                font-weight: 600;
+                color: var(--espresso);
+                margin: 8px 0 6px;
+            }
+
+            .ch-contact-card p {
+                color: var(--roast);
+                font-size: 15px;
+                word-wrap: break-word;
+            }
+
+            /* Clear floats after the cards */
+            .ch-contact-row::after {
+                content: "";
                 display: table;
                 clear: both;
             }
-  
 
-  
+            @media (max-width: 768px) {
+                .ch-hero-title {
+                    font-size: 34px;
+                    white-space: normal;
+                    width: 90%;
+                }
+                .ch-contact-card {
+                    width: 100%;
+                }
+                .ch-intro {
+                    margin: 30px 16px;
+                    padding: 24px;
+                }
+            }
         </style>
     </head>
 
     <body>
         
         <center>
-            <div class="container">
+            <div class="ch-hero-wrap">
                 <img src="{% static 'images/contact.jpg' %}"  width="1300" 
      height="300" >
-     <div class="centered">Contact Us</div>
+     <div class="ch-hero-title">Contact Us</div>
             </div><br>
 
     
-  <div class="text-block">
+  <div class="ch-intro">
 
-    <p style="text-align:center; font-size:150%; font-style:Arial Rounded MT Bold;">we are here for making smile in your face
+    <p style="text-align:center; font-size:150%;">we are here for making smile in your face
          by tasting our sweet and chill ice cream. your support is our big strength.<br>
-         Thank you so much for your cooperation.<br><br><u> Contact Details:<u><br>
+         Thank you so much for your cooperation.<br><br><u> Contact Details:</u><br>
 
   </div>
 </div>
 
-<div class="row">
-  <div class="column" style="background-color:white;">
+<div class="ch-contact-row">
+  <div class="ch-contact-card">
+    <div style="background-color:white;">
     <h2>
         <img src="{% static 'images/wp.png' %}"  width="50" 
      height="50" >
     </h2>
     <h3>Phone</h3>
     <p>0123456789</p>
+    </div>
   </div>
-  <div class="column" style="background-color:white;">
+  <div class="ch-contact-card">
+    <div style="background-color:white;">
     <h2>
         <img src="{% static 'images/email.png' %}"  width="50" 
      height="50" >
     </h2>
     <h3>Email</h3>
     <p>coffeehut@gmail.com</p>
+    </div>
   </div>
-  <div class="column" style="background-color:white;">
+  <div class="ch-contact-card">
+    <div style="background-color:white;">
     <h2>
         <img src="{% static 'images/add.png' %}"  width="70" 
      height="60" >
     </h2>
     <h3>Address</h3>
     <p>sarbapalli radha krishnan road, 211/2 bus stand, north kolkata, kol-701234</p>
+    </div>
   </div>
   
 </div>
@@ -126,4 +269,3 @@
 </html>
 
 {% endblock content %}
-

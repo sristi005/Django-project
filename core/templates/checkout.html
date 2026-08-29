@@ -2,7 +2,125 @@
 {% block content %}
 {% load static %}
 
-<div class="container mt-5">
+<style>
+    /* ---------- Coffee Hut design tokens (matches every other page) ---------- */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+        --espresso: #2b1a12;
+        --roast: #5c3a21;
+        --cream: #fbf4e6;
+        --cream-deep: #f2e5cd;
+        --caramel: #c68b3d;
+        --caramel-dark: #a86f28;
+    }
+
+    /* This file had no <style> block before, so there's no old/dead CSS to
+       remove - everything here is new, and scoped under .ch-checkout-wrap
+       so it can't bleed into base.html's navbar. */
+
+    .ch-checkout-wrap h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 900;
+        color: var(--espresso);
+        letter-spacing: 0.5px;
+        display: inline-block;
+        position: relative;
+        margin-bottom: 28px;
+    }
+
+    .ch-checkout-wrap h2::after {
+        content: "";
+        display: block;
+        width: 46px;
+        height: 3px;
+        margin-top: 12px;
+        background: var(--caramel);
+        border-radius: 2px;
+    }
+
+    .ch-checkout-wrap .alert {
+        border: none;
+        border-radius: .6rem;
+        box-shadow: 0 6px 16px -10px rgba(43,26,18,0.3);
+    }
+
+    .ch-checkout-wrap .card {
+        border: none;
+        border-radius: .75rem;
+        box-shadow: 0 10px 24px -12px rgba(43,26,18,0.25);
+        background: var(--cream-deep);
+    }
+
+    .ch-checkout-wrap .card-title {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        color: var(--espresso);
+    }
+
+    .ch-checkout-wrap .card-body p {
+        color: var(--roast);
+        margin-bottom: .4rem;
+    }
+
+    .ch-checkout-wrap .card-body hr {
+        border: none;
+        height: 1px;
+        background: rgba(92,58,33,0.25);
+        margin: 14px 0;
+    }
+
+    .ch-checkout-wrap .card-body strong {
+        color: var(--caramel-dark);
+        font-size: 1.1rem;
+    }
+
+    .ch-checkout-wrap .form-label {
+        color: var(--roast);
+        font-weight: 600;
+    }
+
+    .ch-checkout-wrap .form-control {
+        border: 1px solid rgba(92,58,33,0.3);
+        border-radius: .5rem;
+    }
+
+    .ch-checkout-wrap .form-control:focus {
+        border-color: var(--caramel);
+        box-shadow: 0 0 0 0.2rem rgba(198,139,61,0.25);
+    }
+
+    .ch-checkout-wrap .btn-success {
+        background-color: var(--espresso);
+        border-color: var(--espresso);
+        border-radius: .5rem;
+        font-weight: 600;
+        letter-spacing: .3px;
+        padding: .6rem 1.4rem;
+        transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
+    }
+
+    .ch-checkout-wrap .btn-success:hover {
+        background-color: var(--caramel-dark);
+        border-color: var(--caramel-dark);
+        transform: translateY(-2px);
+    }
+
+    .ch-checkout-wrap .btn-secondary {
+        background-color: transparent;
+        border-color: var(--roast);
+        color: var(--roast);
+        border-radius: .5rem;
+    }
+
+    .ch-checkout-wrap .btn-secondary:hover {
+        background-color: var(--roast);
+        border-color: var(--roast);
+        color: white;
+    }
+</style>
+
+<div class="container mt-5 ch-checkout-wrap">
     <h2>Checkout</h2>
     {% if messages %}
         {% for message in messages %}

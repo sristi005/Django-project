@@ -3,12 +3,153 @@
 {% load static %}
 
 <style>
-    .cart-item { border-bottom: 1px solid #ddd; padding: 15px 0; }
-    .qty-form input { width: 60px; display: inline-block; }
-    .btn-brown { background-color:#381501; border-color:#381501; color:white; }
+    /* ---------- Coffee Hut design tokens (matches every other page) ---------- */
+    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+        --espresso: #2b1a12;
+        --roast: #5c3a21;
+        --cream: #fbf4e6;
+        --cream-deep: #f2e5cd;
+        --caramel: #c68b3d;
+        --caramel-dark: #a86f28;
+        --burgundy: #7a2a2a;
+    }
+
+    body {
+        background: var(--cream);
+    }
+
+    /* Everything below is scoped under .ch-cart-wrap so it can't bleed into
+       base.html's navbar. The original .cart-item/.qty-form/.btn-brown rules
+       weren't dead, but they used hardcoded hex (#381501, #ddd) that now
+       gets superseded by the shared token set every other page draws from,
+       so those hardcoded values are replaced rather than duplicated. */
+
+    .ch-cart-wrap h2 {
+        font-family: 'Fraunces', serif;
+        font-weight: 900;
+        color: var(--espresso);
+        letter-spacing: 0.5px;
+        display: inline-block;
+        position: relative;
+        margin-bottom: 28px;
+    }
+
+    .ch-cart-wrap h2::after {
+        content: "";
+        display: block;
+        width: 46px;
+        height: 3px;
+        margin-top: 12px;
+        background: var(--caramel);
+        border-radius: 2px;
+    }
+
+    .ch-cart-wrap .alert {
+        border: none;
+        border-radius: .6rem;
+        box-shadow: 0 6px 16px -10px rgba(43,26,18,0.3);
+    }
+
+    .ch-cart-wrap .cart-item {
+        background: white;
+        border: none;
+        border-radius: .75rem;
+        box-shadow: 0 8px 20px -12px rgba(43,26,18,0.25);
+        padding: 18px 22px;
+        margin-bottom: 16px;
+        gap: 16px;
+        transition: box-shadow .2s ease;
+    }
+
+    .ch-cart-wrap .cart-item:hover {
+        box-shadow: 0 14px 28px -14px rgba(43,26,18,0.35);
+    }
+
+    .ch-cart-wrap .cart-item h5 {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        color: var(--espresso);
+        margin-bottom: 4px;
+    }
+
+    .ch-cart-wrap .cart-item p {
+        color: var(--roast);
+    }
+
+    .ch-cart-wrap .cart-item strong {
+        color: var(--caramel-dark);
+        font-size: 1.05rem;
+    }
+
+    .ch-cart-wrap .qty-form input {
+        width: 64px;
+        display: inline-block;
+        border: 1px solid rgba(92,58,33,0.3);
+        border-radius: .5rem;
+        padding: .3rem .5rem;
+        text-align: center;
+    }
+
+    .ch-cart-wrap .qty-form input:focus {
+        outline: none;
+        border-color: var(--caramel);
+        box-shadow: 0 0 0 0.15rem rgba(198,139,61,0.25);
+    }
+
+    .ch-cart-wrap .qty-form .btn-outline-secondary {
+        border-color: var(--roast);
+        color: var(--roast);
+        border-radius: .5rem;
+    }
+
+    .ch-cart-wrap .qty-form .btn-outline-secondary:hover {
+        background-color: var(--roast);
+        border-color: var(--roast);
+        color: white;
+    }
+
+    .ch-cart-wrap .btn-danger {
+        background-color: var(--burgundy);
+        border-color: var(--burgundy);
+        border-radius: .5rem;
+    }
+
+    .ch-cart-wrap .btn-danger:hover {
+        background-color: #611f1f;
+        border-color: #611f1f;
+    }
+
+    .ch-cart-wrap .btn-brown {
+        background-color: var(--espresso);
+        border-color: var(--espresso);
+        color: white;
+        border-radius: .5rem;
+        font-weight: 600;
+        letter-spacing: .3px;
+        padding: .6rem 1.4rem;
+        transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
+    }
+
+    .ch-cart-wrap .btn-brown:hover {
+        background-color: var(--caramel-dark);
+        border-color: var(--caramel-dark);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .ch-cart-wrap h4 {
+        font-family: 'Fraunces', serif;
+        color: var(--espresso);
+    }
+
+    .ch-cart-wrap p {
+        color: var(--roast);
+    }
 </style>
 
-<div class="container mt-5">
+<div class="container mt-5 ch-cart-wrap">
     <h2>Your Cart</h2>
     {% if messages %}
         {% for message in messages %}

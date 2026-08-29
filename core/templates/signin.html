@@ -1,98 +1,186 @@
+
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account</title>
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-        body {
-            background: #422e11;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
-        }
+body{
+background:#cc945c;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            width: 400px;
-            padding: 40px;
-            background: #825e41;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-        }
+/* Container */
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
+.container{
+display:flex;
+width:1100px;
+height:650px;
+background:#452506;
+border-radius:15px;
+overflow:hidden;
+}
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+/* Left Panel */
 
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            background: #2b2638;
-            border: 1px solid #7b5cff;
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-            outline: none;
-        }
+.left-panel{
 
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            border-color: #6a4ee6;
-        }
+flex:1;
+background:url("edu.jpg") center/cover;
+position:relative;
+padding:0px;
+}
 
-        .password-box {
-            position: relative;
-        }
+.logo{
+font-size:22px;
+font-weight:bold;
+}
 
-        .eye {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #7b5cff;
-        }
+.left-text{
+position:absolute;
+top: 30px;
+left:30px;
+font-size:22px;
+max-width:250px;
+}
 
-        .signin {
-            width: 100%;
-            padding: 14px;
-            background: #7b5cff;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
+/* Right Panel */
 
-        .signin:hover {
-            background: #6a4ee6;
-        }
-    </style>
+.right-panel{
+flex:1;
+padding:60px;
+display:flex;
+flex-direction:column;
+}
+
+.right-panel h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.login-link{
+margin-bottom:30px;
+color:#bbb;
+}
+
+/* Inputs */
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border-radius:8px;
+border:none;
+background:#eba159;
+color:white;
+}
+
+.password-box{
+position:relative;
+}
+
+/*
+#togglePassword{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+}
+*/
+.eye{
+position:absolute;
+right:10px;
+top:10px;
+cursor:pointer;
+}
+
+
+/* Button */
+
+.signin-btn{
+width:100%;
+padding:14px;
+background:#fcd0a4;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.signin-btn:hover{
+background:#2b1a12;
+border: solid white;
+}
+
+/* Social Buttons */
+
+.social-buttons{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:auto;
+}
+
+.social-buttons button{
+    margin: 0;
+    padding:12px 22px;
+    border-radius:8px;
+    border:1px solid #555;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    align-self:flex-end;
+}
+
+.social-buttons button:hover{
+background:#3d3655;
+}
+
+
+</style>
 </head>
+
 <body>
+
     <div class="container">
+
+    <!-- Left Section -->
+    <div class="left-panel">
+        <div class="logo">
+            <img src="{% static 'images/login.webp' %}" style=" height:100vh; width:70vh" > 
+
+        </div>
+
+        <div class="left-text">
+            <h2>CAFEHUT</h2>
+        </div>
+    </div>
+
+    <div class="right-panel">
         <h1>Sign In</h1>
+        <p class="login-link">Sign In with your existing account</p>
         {% if messages %}
             {% for message in messages %}
                 <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %}; text-align: center;">{{ message }}</p>
@@ -103,16 +191,23 @@
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" required>
             </div>
-            <div class="form-group password-box">
+            <div class="password-box">
                 <input type="password" name="password" placeholder="Enter your password" id="password" required>
                 <span class="eye" onclick="togglePassword()">👁</span>
             </div>
-            <button type="submit" class="signin">Sign In</button>
+            <button type="submit" class="signin-btn">Sign In</button>
+
+            <div class="social-buttons">
+                <button type="button" class="signin" onclick="window.location.href='login'">Sign Up</button>
+            </div>
         </form>
     </div>
+</div>
 
-    <script>
-        function togglePassword() {
+
+<script>
+
+    function togglePassword() {
             const passwordField = document.getElementById("password");
             if (passwordField.type === "password") {
                 passwordField.type = "text";
@@ -146,6 +241,8 @@
             // Clear all form fields
             form.reset();
         }
-    </script>
+
+</script>
+
 </body>
 </html>

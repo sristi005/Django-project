@@ -4,42 +4,122 @@
 {% load static %}
 
 <style>
-  h3 { color: white; }
-  p1 { color: white; }
+  /* ---------- Coffee Hut design tokens (matches home/about/contact pages) ---------- */
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap');
 
-  .product-img {
+  :root {
+    --espresso: #2b1a12;
+    --roast: #5c3a21;
+    --cream: #fbf4e6;
+    --cream-deep: #f2e5cd;
+    --caramel: #c68b3d;
+    --caramel-dark: #a86f28;
+  }
+
+  /* Everything below is scoped under .ch-menu-wrap (added to this page's own
+     container) so it can never bleed into base1.html's navbar the way the
+     old unscoped h3/p1 rules risked doing. The old h3 { color: white } and
+     p1 { color: white } rules are removed: h3 isn't used anywhere in this
+     template (cards use h5), p1 isn't a real HTML tag, and both were only
+     ever going to make text invisible against a light card/background. */
+
+  .ch-menu-wrap {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 32px 16px 12px;
+  }
+
+  .ch-menu-wrap h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    color: var(--espresso);
+    letter-spacing: 0.5px;
+  }
+
+  .ch-menu-wrap hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--roast) 20%, var(--roast) 80%, transparent);
+    opacity: 0.35;
+    margin: 12px auto 40px !important;
+    position: relative;
+    width: 60%;
+  }
+  .ch-menu-wrap hr::after {
+    content: "\2022 \2022 \2022";
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--cream);
+    padding: 0 14px;
+    color: var(--caramel-dark);
+    letter-spacing: 10px;
+    font-size: 16px;
+  }
+
+  .ch-menu-wrap .product-img {
     width: 100%;
     height: 220px;
     object-fit: cover;
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
+    transition: transform .3s ease;
   }
 
-  .card {
+  .ch-menu-wrap .card {
     border: none;
+    border-radius: .75rem;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 24px -12px rgba(43,26,18,0.25);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .ch-menu-wrap .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 32px -14px rgba(43,26,18,0.35);
+  }
+
+  .ch-menu-wrap .card:hover .product-img {
+    transform: scale(1.05);
+  }
+
+  .ch-menu-wrap .card-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    color: var(--espresso);
+  }
+
+  .ch-menu-wrap .card-text {
+    color: var(--roast);
+  }
+
+  .ch-menu-wrap .card-text strong {
+    color: var(--caramel-dark);
+    font-size: 1.1rem;
+  }
+
+  .ch-menu-wrap .btn-coffee {
+    background-color: var(--espresso);
+    border-color: var(--espresso);
+    color: white;
     border-radius: .5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: transform .15s ease;
+    font-weight: 600;
+    letter-spacing: .3px;
+    padding: .55rem 0;
+    transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
   }
 
-  .card:hover {
-    transform: translateY(-4px);
-  }
-
-  .btn-coffee {
-    background-color: #381501;
-    border-color: #381501;
+  .ch-menu-wrap .btn-coffee:hover {
+    background-color: var(--caramel-dark);
+    border-color: var(--caramel-dark);
     color: white;
-  }
-
-  .btn-coffee:hover {
-    background-color: #4d1e02;
-    border-color: #4d1e02;
-    color: white;
+    transform: translateY(-2px);
   }
 </style>
 
-<div class="container my-4">
+<div class="container my-4 ch-menu-wrap">
   <h1 class="text-center mb-4">COFFEES</h1>
   <hr>
 
@@ -65,7 +145,7 @@
         {% elif item.item_name == "Irish Coffee" %}
           <img src="{% static 'images/irish.jpg' %}" class="product-img" alt="{{ item.item_name }}">
         {% elif item.item_name == "White Chocolate Mocha" %}
-          <img src="{% static 'images/mocha.jpg' %}" class="product-img" alt="{{ item.item_name }}">
+          <img src="{% static 'images/mochacoffee.jpg' %}" class="product-img" alt="{{ item.item_name }}">
         {% else %}
           <img src="{% static 'images/default.jpg' %}" class="product-img" alt="{{ item.item_name }}">
         {% endif %}

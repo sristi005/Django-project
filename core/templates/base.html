@@ -1,4 +1,6 @@
 <!doctype html>
+
+{% load static %}
 <html lang="en">
     <head>
         <title>Title</title>
@@ -17,14 +19,119 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+        <style>
+
+            nav.navbar .navbar-brand {
+                font-family: 'Fraunces', serif;
+                font-weight: 900;
+                font-size: 26px;
+                letter-spacing: 1px;
+                color: var(--espresso) !important;
+            }
+
+            nav.navbar .navbar-nav .nav-link {
+                border-radius: 12px;
+                padding: 8px 14px !important;
+                transition: background-color .2s ease, transform .2s ease;
+            }
+
+            nav.navbar .navbar-nav .nav-link:hover {
+                background-color: rgba(198,139,61,0.18);
+                transform: translateY(-2px);
+            }
+
+            nav.navbar .btn-coffee {
+                background-color: var(--espresso);
+                border-color: var(--espresso);
+                color: white;
+                border-radius: .5rem;
+                font-weight: 600;
+                letter-spacing: .3px;
+                transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
+            }
+
+            nav.navbar .btn-coffee:hover {
+                background-color: var(--caramel-dark);
+                border-color: var(--caramel-dark);
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            /* ---------- Mobile responsiveness ---------- */
+            /* navbar-expand-lg means the toggler now shows on phones AND
+               tablets (below 992px) instead of only below 576px, so the many
+               nav items + avatar/logout never get cramped into one row. */
+            @media (max-width: 991.98px) {
+                nav.navbar .navbar-brand {
+                    font-size: 21px;
+                }
+
+                nav.navbar .navbar-brand img {
+                    width: 42px;
+                    height: 42px;
+                }
+
+                nav.navbar .navbar-nav {
+                    width: 100%;
+                    gap: 4px;
+                }
+
+                nav.navbar .navbar-nav .nav-link {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    width: 100%;
+                    padding: 12px 14px !important;
+                    border-bottom: 1px solid rgba(92,58,33,0.12);
+                }
+
+                nav.navbar .navbar-nav .nav-link:hover {
+                    transform: none;
+                }
+
+                nav.navbar .collapse.navbar-collapse {
+                    margin-top: 12px;
+                }
+
+                nav.navbar .d-flex.align-items-center {
+                    width: 100%;
+                    justify-content: space-between;
+                    padding: 12px 4px 4px;
+                    border-top: 1px solid rgba(92,58,33,0.15);
+                    margin-top: 8px;
+                }
+
+                nav.navbar a[href*="login"].btn-coffee,
+                nav.navbar .btn-coffee {
+                    width: 100%;
+                    text-align: center;
+                    padding: 10px 0;
+                }
+            }
+
+            @media (max-width: 420px) {
+                nav.navbar .navbar-brand {
+                    font-size: 18px;
+                }
+                nav.navbar .navbar-brand img {
+                    width: 36px;
+                    height: 36px;
+                }
+            }
+
+
+        </style>
     </head>
 
     <body>
         <div class="container">
             <nav
-                class="navbar navbar-expand-sm navbar-light bg-light">           
+                class="navbar navbar-expand-sm navbar-light bg-">           
                 <div class="container">
-                    <a class="navbar-brand text-black" href="#">CAFE HUT</a>    
+                    <a class="navbar-brand text-black">
+                        <img src="{% static 'images/cafe_logo_transparent.png' %}" alt="Company Name Logo" width="100" height="100">
+                        CAFE HUT</a>    
                     <button
                         class="navbar-toggler d-lg-none"
                         type="button"
